@@ -18,26 +18,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-
-    Route::group(['middleware' => ['guest']], function() {
-        /**
-         * Register Routes
-         */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
-        Route::post('/register', 'RegisterController@register')->name('register.perform');
-
-        /**
-         * Login Routes
-         */
-        Route::get('/login', 'LoginController@show')->name('login.show');
-        Route::post('/login', 'LoginController@login')->name('login.perform');
-
-    });
-
     Route::group(['middleware' => ['auth']], function() {
         /**
          * Logout Routes
          */
+        Route::get('/', function () {
+            return route('sections.index');
+        })->name('sections.index');
         Route::group(['prefix' => 'sections'], function() {
             Route::get('/', 'SectionController@index')->name('sections.index');
             Route::get('/create', 'SectionController@create')->name('sections.create');
@@ -58,4 +45,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
     });
+
+    Route::group(['middleware' => ['guest']], function() {
+        /**
+         * Register Routes
+         */
+        Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        /**
+         * Login Routes
+         */
+        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::post('/login', 'LoginController@login')->name('login.perform');
+
+    });
+
+    
 });
