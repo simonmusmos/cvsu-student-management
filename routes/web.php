@@ -23,8 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * Logout Routes
          */
         Route::get('/', function () {
-            return route('sections.index');
-        })->name('sections.index');
+            return redirect(route('sections.index'));
+        })->name('index');
         Route::group(['prefix' => 'sections'], function() {
             Route::get('/', 'SectionController@index')->name('sections.index');
             Route::get('/create', 'SectionController@create')->name('sections.create');
