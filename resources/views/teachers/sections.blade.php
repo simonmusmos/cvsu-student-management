@@ -7,9 +7,9 @@
                     <div class="row">
                         <!-- Grid column -->
                         <div class="col-md-12">
-                            <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Students</h2>
-                            <div class="float-right mb-4 mr-3">
-                            <a href="{{ route('students.create') }}" class="btn btn-success me-2 ml-4">Add Student</a>
+                            <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">{{ $teacher->first_name }} {{ $teacher->last_name }} Sections</h2>
+                            <div class="float-left mb-4 mr-3">
+                            <a href="{{ route('teachers.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
                             </div>
                             <form id="search">
                                 <div class="input-group md-form form-sm form-2 pl-0">
@@ -34,28 +34,26 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Student Name</th>
-                                <th>Student Number</th>
-                                <th>Email</th>
-                                <th>Section</th>
+                                <th>Section Name</th>
+                                <th>Date Created</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <!--Table head-->
                         <!--Table body-->
                         <tbody>
-                            @forelse($students as $student)
+                            @forelse($sections as $section)
                             <tr>
-                                <th scope="row">{{ $student->id }}</th>
-                                <td>{{ $student->first_name }} {{ $student->last_name }}</td>
-                                <td>{{ $student->student_number }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->section->name ?? '' }}</td>
+                                <th scope="row">{{ $section->id }}</th>
+                                <td>{{ $section->section->name }}</td>
+                                <td>{{ $section->section->created_at->format('M d, Y') }}</td>
                                 <td>
-                                    <form id="delete" method="POST" action="{{ route('students.destroy', [$student->id]) }}" class="m-0">
+                                    
+                                    <form id="delete" method="POST" action="{{ route('sections.destroy', [$section->section->id]) }}" class="m-0">
                                         @csrf
-                                        <a href="{{ route('students.edit', [$student->id]) }}" class="btn btn-success me-2ml-0">Edit</a>
-                                        <input type="submit" value="Delete" class="btn btn-danger me-2 ml-4">
+                                        <a href="{{ route('sections.edit', [$section->section->id]) }}?t={{ $teacher->id}}" class="btn btn-success me-2ml-0">Edit</a>
+                                        <a href="{{ route('sections.students', [$section->section->id]) }}?t={{ $teacher->id}}" class="btn btn-success me-2ml-0">View Students</a>
+                                        <input type="submit" value="Delete" class="btn btn-danger me-2">
                                     </form>
                                 </td>
                             </tr>

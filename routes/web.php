@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::post('/', 'SectionController@add')->name('sections.add');
             Route::get('/{section}', 'SectionController@edit')->name('sections.edit');
             Route::post('/{section}', 'SectionController@update')->name('sections.update');
+            Route::get('/{section}/students', 'SectionController@students')->name('sections.students');
             Route::post('/destroy/{section}', 'SectionController@destroy')->name('sections.destroy');
         });
 
@@ -41,6 +42,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/{student}', 'StudentController@edit')->name('students.edit');
             Route::post('/{student}', 'StudentController@update')->name('students.update');
             Route::post('/destroy/{student}', 'StudentController@destroy')->name('students.destroy');
+        });
+
+        Route::group(['prefix' => 'teachers'], function() {
+            Route::get('/', 'TeacherController@index')->name('teachers.index');
+            Route::get('/create', 'TeacherController@create')->name('teachers.create');
+            Route::post('/', 'TeacherController@add')->name('teachers.add');
+            Route::get('/{teacher}', 'TeacherController@edit')->name('teachers.edit');
+            Route::post('/{teacher}', 'TeacherController@update')->name('teachers.update');
+            Route::get('/{teacher}/sections', 'TeacherController@sections')->name('teachers.sections');
+            Route::post('/destroy/{teacher}', 'TeacherController@destroy')->name('teachers.destroy');
         });
 
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');

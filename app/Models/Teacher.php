@@ -5,28 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Teacher extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'first_name',
+        'last_name',
+        'email',
+        'password',
     ];
 
     public function scopeWithSearch($query, $request)
     {
         if ($request->search ?? '') {
-            $query->whereRaw('name like "%' . $request->search . '%"');
+            $query->whereRaw('CONCAT(first_name," ",last_name) like "%' . $request->search . '%"');
         }
     }
 
     public function section_teacher()
     {
-        return $this->hasOne(SectionTeacher::class);
-    }
-
-    public function students()
-    {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(SectionTeacher::class);
     }
 }

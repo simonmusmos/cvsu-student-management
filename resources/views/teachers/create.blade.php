@@ -7,9 +7,9 @@
             <div class="row">
                 <!-- Grid column -->
                 <div class="col-md-12">
-                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Add Section</h2>
+                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Add Teacher</h2>
                     <div class="float-left mb-4 ml-3">
-                    <a href="{{ route('sections.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
+                    <a href="{{ route('teachers.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
                     </div>
                     
                 </div>
@@ -32,27 +32,35 @@
                 </div>
             @endif
 
-            <form id="create" method="POST" action="{{ route('sections.add') }}">
+            <form id="create" method="POST" action="{{ route('teachers.add') }}">
             @csrf
                 <div class="m-4 row">
                     <!-- Grid column -->
                     <div class="col-md-7">
                         <div class="form-group">
-							<label for="email">Section Name</label>
-							<input type="text" id="name" value="{{ old('name') ?? '' }}" name="name" class="form-control" placeholder="Section Name">
+							<label for="email">Teacher First Name</label>
+							<input type="text" id="first_name" value="{{ old('first_name') ?? '' }}" name="first_name" class="form-control" placeholder="Teacher First Name">
 						</div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-							<label for="email">Teacher</label>
-							<select id="teacher" name="teacher" class="form-control">
-                                <option disabled selected>Select Teacher</option>
-                                @foreach($teachers as $teacher)
-                                    <option value="{{ $teacher->id }}" {{ old('teacher') == $teacher->id ? 'selected' : '' }}>{{ $teacher->first_name }} {{ $teacher->last_name }}</option>
-                                @endforeach
-                            </select>
+							<label for="email">Teacher First Name</label>
+							<input type="text" id="last_name" value="{{ old('last_name') ?? '' }}" name="last_name" class="form-control" placeholder="Teacher Last Name">
 						</div>
                     </div>
+                    <!-- <div class="col-md-7">
+                        <div class="form-group">
+							<label for="email">Student Number</label>
+							<input type="text" id="student_number" value="{{ old('student_number') ?? '' }}" name="student_number" class="form-control" placeholder="Student Number">
+						</div>
+                    </div> -->
+                    <div class="col-md-7">
+                        <div class="form-group">
+							<label for="email">Email</label>
+							<input type="text" id="email" value="{{ old('email') ?? '' }}" name="email" class="form-control" placeholder="Email">
+						</div>
+                    </div>
+                    
                     <div class="col-md-7">
                         <div class="form-group">
                             <input type="submit" class="btn btn-success">

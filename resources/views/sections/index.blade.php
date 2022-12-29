@@ -52,7 +52,8 @@
                                     <form id="delete" method="POST" action="{{ route('sections.destroy', [$section->id]) }}" class="m-0">
                                         @csrf
                                         <a href="{{ route('sections.edit', [$section->id]) }}" class="btn btn-success me-2ml-0">Edit</a>
-                                        <input type="submit" value="Delete" class="btn btn-danger me-2 ml-4">
+                                        <a href="{{ route('sections.students', [$section->id]) }}" class="btn btn-success me-2ml-0">View Students</a>
+                                        <input type="submit" value="Delete" class="btn btn-danger me-2">
                                     </form>
                                 </td>
                             </tr>

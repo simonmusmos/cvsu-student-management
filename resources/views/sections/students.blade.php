@@ -7,9 +7,15 @@
                     <div class="row">
                         <!-- Grid column -->
                         <div class="col-md-12">
-                            <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Students</h2>
-                            <div class="float-right mb-4 mr-3">
-                            <a href="{{ route('students.create') }}" class="btn btn-success me-2 ml-4">Add Student</a>
+                            <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">{{ $section->name }} Students</h2>
+                            <div class="float-left mb-4 mr-3">
+                            @if(request()->t != 0 || request()->t != '')
+                                <a href="{{ route('teachers.sections', [request()->t]) }}" class="btn btn-danger me-2 ml-4">Back</a>
+                            @else
+                                <a href="{{ route('sections.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
+                            @endif
+                            
+                            <!-- <a href="{{ route('teachers.create') }}" class="btn btn-success me-2 ml-4">Add Teacher</a> -->
                             </div>
                             <form id="search">
                                 <div class="input-group md-form form-sm form-2 pl-0">
@@ -50,11 +56,15 @@
                                 <td>{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td>{{ $student->student_number }}</td>
                                 <td>{{ $student->email }}</td>
-                                <td>{{ $student->section->name ?? '' }}</td>
+                                <td>{{ $student->section->name }}</td>
                                 <td>
                                     <form id="delete" method="POST" action="{{ route('students.destroy', [$student->id]) }}" class="m-0">
                                         @csrf
-                                        <a href="{{ route('students.edit', [$student->id]) }}" class="btn btn-success me-2ml-0">Edit</a>
+                                        @if(request()->t != 0 || request()->t != '')
+                                            <a href="{{ route('students.edit', [$student->id]) }}?b={{ $section->id}}&t={{ request()->t }}" class="btn btn-success me-2ml-0">Edit</a>
+                                        @else
+                                            <a href="{{ route('students.edit', [$student->id]) }}?b={{ $section->id}}" class="btn btn-success me-2ml-0">Edit</a>
+                                        @endif
                                         <input type="submit" value="Delete" class="btn btn-danger me-2 ml-4">
                                     </form>
                                 </td>

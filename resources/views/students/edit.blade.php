@@ -9,7 +9,12 @@
                 <div class="col-md-12">
                     <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Add Student</h2>
                     <div class="float-left mb-4 ml-3">
-                    <a href="{{ route('students.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
+                    @if(request()->t != 0 || request()->t != '')
+                        <a href="{{ (request()->b != 0 || request()->b != '') ? route('sections.students', [request()->b]) : route('students.index') }}?t={{ request()->t }}" class="btn btn-danger me-2 ml-4">Back</a>
+                    @else
+                        <a href="{{ (request()->b != 0 || request()->b != '') ? route('sections.students', [request()->b]) : route('students.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
+                    @endif
+                    
                     </div>
                     
                 </div>

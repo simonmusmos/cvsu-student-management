@@ -72,7 +72,7 @@ class StudentController extends Controller
             'email' => $request->email,
             'student_number' => $request->student_number,
             'section_id' => $request->section,
-            'password' => bcrypt($request->student_number),
+            // 'password' => bcrypt($request->student_number),
         ]);
 
         return back()->with('success','Successfully edited student!');
