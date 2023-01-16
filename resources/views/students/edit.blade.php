@@ -62,7 +62,7 @@
                     <div class="col-md-7">
                         <div class="form-group">
 							<label for="email">Email</label>
-							<input type="text" id="email" value="{{ $student->email ?? '' }}" name="email" class="form-control" placeholder="Email">
+							<input type="text" id="email" value="{{ $student->user->email ?? '' }}" name="email" class="form-control" placeholder="Email">
 						</div>
                     </div>
                     <div class="col-md-7">

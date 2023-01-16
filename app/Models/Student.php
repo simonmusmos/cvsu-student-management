@@ -12,15 +12,19 @@ class Student extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
+        'user_id',
         'student_number',
-        'password',
         'section_id',
     ];
 
     public function section()
     {
         return $this->belongsTo(Section::class, 'section_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeWithSearch($query, $request)

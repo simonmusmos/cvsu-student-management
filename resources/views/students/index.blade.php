@@ -49,7 +49,7 @@
                                 <th scope="row">{{ $student->id }}</th>
                                 <td>{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td>{{ $student->student_number }}</td>
-                                <td>{{ $student->email }}</td>
+                                <td>{{ $student->user->email ?? '' }}</td>
                                 <td>{{ $student->section->name ?? '' }}</td>
                                 <td>
                                     <form id="delete" method="POST" action="{{ route('students.destroy', [$student->id]) }}" class="m-0">

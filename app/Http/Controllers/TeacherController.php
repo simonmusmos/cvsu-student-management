@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -42,14 +43,20 @@ class TeacherController extends Controller
         $request->validate([
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:teachers,email',
+            'email' => 'required|email|max:255|unique:users,email',
+        ]);
+
+        $user = User::create([
+            'name' => $request->first_name . ' ' . $request->last_name,
+            'email' => $request->email,
+            'user_type_id' => 3,
+            'password' => $request->first_name . ' ' . $request->last_name,
         ]);
 
         Teacher::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => bcrypt($request->first_name . '' . $request->last_name),
+            'user_id' => $user->id,
         ]);
 
         return back()->with('success','Successfully added new teacher!');
@@ -91,13 +98,18 @@ class TeacherController extends Controller
         $request->validate([
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:teachers,email,'.$teacher->id,
+            'email' => 'required|email|max:255|unique:users,email,'.$teacher->user->user_id,
+        ]);
+
+        $teacher->user->update([
+            'name' => $request->first_name . ' ' . $request->last_name,
+            'email' => $request->email,
+            // 'password' => bcrypt($request->student_number),
         ]);
 
         $teacher->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'email' => $request->email,
         ]);
 
         return back()->with('success','Successfully edited teacher!');
@@ -121,6 +133,7 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         // dd($teacher->section_teacher);
+        $teacher->user()->delete();
         if ($teacher->section_teacher) {
             $teacher->section_teacher()->delete();
         }

@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="row">{{ $teacher->id }}</th>
                                 <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
-                                <td>{{ $teacher->email }}</td>
+                                <td>{{ $teacher->user->email ?? '' }}</td>
                                 <td>
                                     <form id="delete" method="POST" action="{{ route('teachers.destroy', [$teacher->id]) }}" class="m-0">
                                         @csrf
