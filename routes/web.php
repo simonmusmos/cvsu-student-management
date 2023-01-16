@@ -43,7 +43,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::post('/{student}', 'StudentController@update')->name('students.update');
             Route::post('/destroy/{student}', 'StudentController@destroy')->name('students.destroy');
         });
-
         Route::group(['prefix' => 'teachers'], function() {
             Route::get('/', 'TeacherController@index')->name('teachers.index');
             Route::get('/create', 'TeacherController@create')->name('teachers.create');
