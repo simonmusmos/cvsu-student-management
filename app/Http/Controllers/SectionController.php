@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Models\SectionSeat;
 use App\Models\SectionTeacher;
 use App\Models\Teacher;
 
@@ -94,5 +95,31 @@ class SectionController extends Controller
         $section->delete();
 
         return back()->with('success','Successfully deleted section!');
+    }
+
+    public function seat(Section $section, Request $request) {
+        // dd();
+        return view('sections.seats',[
+            'section' => $section,
+            'max_row' => 6,
+            'seat_per_row' => 5,
+            'seats' => $section->seats->pluck('seat')->toArray(),
+        ]);
+    }
+    public function seatAdd(Section $section, Request $request) {
+        if(! SectionSeat::where('seat', $request->seat)->where('section_id', $section->id)->first()) {
+            SectionSeat::create([
+                'section_id' => $section->id,
+                'seat' => $request->seat,
+            ]);
+        }
+        return response()->json(['id' => $request->seat]);
+    }
+    public function seatRemove(Section $section, Request $request) {
+        $seat = SectionSeat::where('seat', $request->seat)->where('section_id', $section->id)->first();
+        if($seat) {
+            $seat->delete();
+        }
+        return response()->json(['id' => $request->seat]);
     }
 }

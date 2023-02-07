@@ -29,4 +29,9 @@ class Section extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function seats()
+    {
+        return $this->hasMany(SectionSeat::class);
+    }
 }

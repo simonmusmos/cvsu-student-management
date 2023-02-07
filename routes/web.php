@@ -31,6 +31,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::post('/', 'SectionController@add')->name('sections.add');
             Route::get('/{section}', 'SectionController@edit')->name('sections.edit');
             Route::post('/{section}', 'SectionController@update')->name('sections.update');
+            Route::get('/{section}/seat', 'SectionController@seat')->name('sections.seat');
+            Route::post('/{section}/seat/add', 'SectionController@seatAdd')->name('sections.seat.add');
+            Route::post('/{section}/seat/remove', 'SectionController@seatRemove')->name('sections.seat.remove');
             Route::get('/{section}/students', 'SectionController@students')->name('sections.students');
             Route::post('/destroy/{section}', 'SectionController@destroy')->name('sections.destroy');
         });

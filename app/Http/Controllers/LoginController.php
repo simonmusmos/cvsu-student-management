@@ -23,10 +23,14 @@ class LoginController extends Controller
         endif;
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
+        if($user->user_type_id == 1) {
+            Auth::login($user);
 
-        Auth::login($user);
-
-        return $this->authenticated($request, $user);
+            return $this->authenticated($request, $user);
+        } else {
+            return redirect()->to('login')
+                ->withErrors(trans('auth.failed'));
+        }
     }
 
     protected function authenticated(Request $request, $user) 

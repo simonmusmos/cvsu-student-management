@@ -17,12 +17,19 @@ class UserController extends Controller
         // $credentials = $request->getCredentials();
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-        $token =  $user->createToken('auth_token')->plainTextToken;
-            return response()->json([
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                ]
-                , $this->status_code);
+            if ($user->user_type_id == 2) {
+                $token =  $user->createToken('auth_token')->plainTextToken;
+                return response()->json([
+                    'access_token' => $token,
+                    'token_type' => 'Bearer',
+                    ]
+                    , $this->status_code);
+            }
+            else{
+                Auth::logout(); 
+                return response()->json(['error'=>'Unauthorised'], 401);
+            }
+            
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);

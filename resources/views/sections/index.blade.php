@@ -53,6 +53,7 @@
                                         @csrf
                                         <a href="{{ route('sections.edit', [$section->id]) }}" class="btn btn-success me-2ml-0">Edit</a>
                                         <a href="{{ route('sections.students', [$section->id]) }}" class="btn btn-success me-2ml-0">View Students</a>
+                                        <a href="{{ route('sections.seat', [$section->id]) }}" class="btn btn-success me-2ml-0">View Seats</a>
                                         <input type="submit" value="Delete" class="btn btn-danger me-2">
                                     </form>
                                 </td>

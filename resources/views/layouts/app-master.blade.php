@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.87.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Fixed top navbar example · Bootstrap v5.1</title>
 
     <!-- Bootstrap core CSS -->
@@ -25,6 +26,16 @@
           font-size: 3.5rem;
         }
       }
+      .seat {
+        border-style: solid;
+        border-width: 1px;
+        background-color: white !important;
+      }
+      .seat-taken {
+        border-style: solid;
+        border-width: 1px;
+        background-color: green !important;
+      }
     </style>
 
     
@@ -38,8 +49,8 @@
     <main class="container">
         @yield('content')
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
-      
+    @yield('scripts')
   </body>
 </html>
