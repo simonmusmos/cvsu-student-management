@@ -40,4 +40,9 @@ class UserController extends Controller
     public function userDetail(Request $request) {
         return $request->user();
     }
+
+    public function userLogout(Request $request) {
+        Auth::logout(); 
+        return response()->json(['message'=>'Done'], 200);
+    }
 }
