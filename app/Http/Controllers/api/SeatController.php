@@ -12,6 +12,6 @@ class SeatController extends Controller
 {
     private $status_code = 200;
     public function getSeats(Request $request) {
-        return $request->user->student->section;
+        return $request->user()->student->section;
     }
 }
