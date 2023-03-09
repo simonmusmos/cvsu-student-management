@@ -13,4 +13,9 @@ class UserSeat extends Model
         'seat',
         'student_id',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id');
+    }
 }
