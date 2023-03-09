@@ -17,7 +17,7 @@ class SeatController extends Controller
     }
 
     public function checkSeats(Request $request) {
-        return response()->json(['status' => false]);
+        return response()->json(['status' => $request->seat]);
         $exists = UserSeat::where('student_id', $request->user()->student)->whereDate('created_at', Carbon::today())->first();
         if (! $exists) {
             $seat_exists = UserSeat::where('seat', $request->seat)->whereDate('created_at', Carbon::today())->first();
