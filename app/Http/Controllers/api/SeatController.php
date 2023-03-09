@@ -28,6 +28,7 @@ class SeatController extends Controller
     }
 
     public function useSeat(Request $request) {
+        return response()->json([123]);
         $exists = UserSeat::where('student_id', $request->user()->student)->whereDate('created_at', Carbon::today())->first();
         if (! $exists) {
             $seat_exists = UserSeat::where('seat', $request->seat)->whereDate('created_at', Carbon::today())->first();
