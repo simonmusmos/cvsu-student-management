@@ -22,6 +22,7 @@ Route::get('/auth/details', [UserController::class, 'userDetail'])->middleware('
 
 Route::get('/section/seats', [SeatController::class, 'getSeats'])->middleware('auth_api:sanctum');
 Route::get('/section/seat', [SeatController::class, 'checkSeats'])->middleware('auth_api:sanctum');
+Route::post('/section/seat', [SeatController::class, 'useSeat'])->middleware('auth_api:sanctum');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
