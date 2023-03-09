@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\UserSeat;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -19,9 +21,15 @@ class UserController extends Controller
             $user = Auth::user();
             if ($user->user_type_id == 2) {
                 $token =  $user->createToken('auth_token')->plainTextToken;
+                $is_logged_in = false;
+                $exist = UserSeat::where('student_id', $user->student->id)->whereDate('created_at', Carbon::today())->first();
+                if ($exist) {
+                    $is_logged_in = true;
+                }
                 return response()->json([
                     'access_token' => $token,
                     'token_type' => 'Bearer',
+                    'is_logged_id' => $is_logged_in,
                     ]
                     , $this->status_code);
             }
