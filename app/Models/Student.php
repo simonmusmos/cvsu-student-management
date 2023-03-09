@@ -27,6 +27,11 @@ class Student extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function seats()
+    {
+        return $this->hasMany(UserSeat::class);
+    }
+
     public function scopeWithSearch($query, $request)
     {
         if ($request->search ?? '') {
