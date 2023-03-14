@@ -63,14 +63,20 @@ class SeatController extends Controller
 
         foreach ($seats as $seat) {
             $parsed = explode('-', $seat->seat);
-            $logs[] = $parsed;
-            // if ($parsed[0] == 'b') {
-            //     $logs[] = [
-            //         'row' => $parsed[1],
-            //         'seat_no' => $parsed[2],
-            //         'date' => date('M d, Y', strtotime($seat->created_at)),
-            //     ];
-            // }
+            // $logs[] = $parsed;
+            if ($parsed[0] == 'b') {
+                $logs[] = [
+                    'row' => $parsed[1],
+                    'seat_no' => (int)$parsed[2] + 5,
+                    'date' => date('M d, Y', strtotime($seat->created_at)),
+                ];
+            } else {
+                $logs[] = [
+                    'row' => $parsed[1],
+                    'seat_no' => $parsed[2],
+                    'date' => date('M d, Y', strtotime($seat->created_at)),
+                ];
+            }
         }
         return response()->json(['message' => $logs]);
     }
