@@ -56,4 +56,9 @@ class SeatController extends Controller
         }
         return response()->json(['status' => false]);
     }
+
+    public function myLogs(Request $request) {
+        $logs = $request->user()->student->seat;
+        return response()->json(['message' => $logs]);
+    }
 }
