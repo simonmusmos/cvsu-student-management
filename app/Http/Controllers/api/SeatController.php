@@ -58,7 +58,7 @@ class SeatController extends Controller
     }
 
     public function myLogs(Request $request) {
-        $logs = $request->user()->student->seat;
+        $logs = $request->user()->student->seats;
         return response()->json(['message' => $logs]);
     }
 }
