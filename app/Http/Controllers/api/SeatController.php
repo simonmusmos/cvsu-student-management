@@ -58,7 +58,19 @@ class SeatController extends Controller
     }
 
     public function myLogs(Request $request) {
-        $logs = $request->user()->student->seats;
+        $seats = $request->user()->student->seats;
+        $logs = [];
+
+        foreach ($seats as $seat) {
+            $parsed = explode('-', $seat->seat);
+            if ($parsed[0] == 'b') {
+                $logs[] = [
+                    'row' => $parsed[1],
+                    'seat_no' => $parsed[2],
+                    'date' => date('M d, Y', strtotime($seat->created_at)),
+                ];
+            }
+        }
         return response()->json(['message' => $logs]);
     }
 }
