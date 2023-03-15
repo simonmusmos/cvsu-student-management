@@ -19,17 +19,21 @@ class UserController extends Controller
         // $credentials = $request->getCredentials();
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            if ($user->user_type_id == 2) {
+            if ($user->user_type_id == 2 || $user->user_type_id == 3) {
                 $token =  $user->createToken('auth_token')->plainTextToken;
                 $is_logged_in = false;
-                $exist = UserSeat::where('student_id', $user->student->id)->whereDate('created_at', Carbon::today())->first();
-                if ($exist) {
-                    $is_logged_in = true;
+                if ($user->user_type_id == 2) {
+                    $exist = UserSeat::where('student_id', $user->student->id)->whereDate('created_at', Carbon::today())->first();
+                    if ($exist) {
+                        $is_logged_in = true;
+                    }
                 }
+                
                 return response()->json([
                     'access_token' => $token,
                     'token_type' => 'Bearer',
                     'is_logged_id' => $is_logged_in,
+                    'user_type' => $user->user_type_id,
                     ]
                     , $this->status_code);
             }
