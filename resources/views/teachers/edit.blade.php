@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-							<label for="email">Teacher First Name</label>
+							<label for="email">Teacher Last Name</label>
 							<input type="text" id="last_name" value="{{ $teacher->last_name ?? '' }}" name="last_name" class="form-control" placeholder="Teacher Last Name">
 						</div>
                     </div>
