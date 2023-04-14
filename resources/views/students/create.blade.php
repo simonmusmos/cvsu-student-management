@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-							<label for="email">Student First Name</label>
+							<label for="email">Student Last Name</label>
 							<input type="text" id="last_name" value="{{ old('last_name') ?? '' }}" name="last_name" class="form-control" placeholder="Student Last Name">
 						</div>
                     </div>

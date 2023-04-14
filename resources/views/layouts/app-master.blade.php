@@ -7,7 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.87.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Fixed top navbar example · Bootstrap v5.1</title>
+    <title>Student Management</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
