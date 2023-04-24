@@ -25,10 +25,10 @@ class SocialiteController extends Controller
 
     public function callback($type)
     {
-        dd(Socialite::driver($type)->stateles()->user());
+        // dd(Socialite::driver($type)->stateles()->user());
         try {
      
-            $user = Socialite::driver($type)->user();
+            $user = Socialite::driver($type)->stateless()->user();
       
             dd($user->user);
             $linkedinUser = User::where('oauth_id', $user->id)->first();
