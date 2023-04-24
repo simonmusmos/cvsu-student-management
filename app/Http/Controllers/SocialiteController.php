@@ -25,12 +25,12 @@ class SocialiteController extends Controller
 
     public function callback($type)
     {
-        dd(Socialite::driver($type)->user());
+        // dd(Socialite::driver($type)->user());
         try {
      
             $user = Socialite::driver($type)->stateless()->user();
       
-            dd($user->user);
+            dd($user->user->user->given_name);
             $linkedinUser = User::where('oauth_id', $user->id)->first();
       
             if($linkedinUser){
@@ -38,7 +38,7 @@ class SocialiteController extends Controller
                 Auth::login($linkedinUser);
      
                 return redirect('/dashboard');
-      
+       
             }else{
                 $user = User::create([
                     'name' => $user->name,
