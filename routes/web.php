@@ -72,6 +72,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
+        Route::group(['prefix' => 'auth'], function () {
+            Route::get('/', 'SocialiteController@index')->name('oauth.index');
+            Route::get('/{type}', 'SocialiteController@redirect')->name('oauth.redirect');
+        });
     });
 
     
