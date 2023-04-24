@@ -25,7 +25,7 @@ class SocialiteController extends Controller
 
     public function callback($type)
     {
-        // dd(Socialite::driver($type)->scopes(['r_liteprofile', 'r_emailaddress'])->stateless()->user());
+        dd(Socialite::driver($type)->user());
         try {
      
             $user = Socialite::driver($type)->stateless()->user();
