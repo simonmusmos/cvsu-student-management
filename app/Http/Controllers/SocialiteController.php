@@ -25,6 +25,7 @@ class SocialiteController extends Controller
 
     public function callback($type)
     {
+        dd(Socialite::driver($type)->user());
         try {
      
             $user = Socialite::driver($type)->user();
