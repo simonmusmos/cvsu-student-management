@@ -19,4 +19,38 @@ class SocialiteController extends Controller
     {
         return Socialite::driver($type)->redirect();
     }
+
+    public function callback($type)
+    {
+        try {
+     
+            $user = Socialite::driver($type)->user();
+      
+            dd($user);
+            $linkedinUser = User::where('oauth_id', $user->id)->first();
+      
+            if($linkedinUser){
+      
+                Auth::login($linkedinUser);
+     
+                return redirect('/dashboard');
+      
+            }else{
+                $user = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'oauth_id' => $user->id,
+                    'oauth_type' => 'linkedin',
+                    'password' => encrypt('admin12345')
+                ]);
+     
+                Auth::login($user);
+      
+                return redirect('/dashboard');
+            }
+     
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }

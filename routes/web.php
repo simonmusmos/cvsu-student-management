@@ -75,6 +75,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::group(['prefix' => 'auth'], function () {
             Route::get('/', 'SocialiteController@index')->name('oauth.index');
             Route::get('/{type}', 'SocialiteController@redirect')->name('oauth.redirect');
+            Route::get('/{type}/callback', 'SocialiteController@callback')->name('oauth.callback');
         });
     });
 
