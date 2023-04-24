@@ -17,6 +17,9 @@ class SocialiteController extends Controller
 
     public function redirect($type)
     {
+        if ($type == 'linkedin') {
+            return Socialite::driver($type)->scopes(['r_liteprofile', 'r_emailaddress'])->redirect();
+        }
         return Socialite::driver($type)->redirect();
     }
 
