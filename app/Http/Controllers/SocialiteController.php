@@ -28,7 +28,7 @@ class SocialiteController extends Controller
         // dd(Socialite::driver($type)->user());
         try {
      
-            $user = Socialite::driver($type)->stateless()->user();
+            $user = Socialite::driver($type)->user();
       
             dd($user);
             $linkedinUser = User::where('oauth_id', $user->id)->first();
