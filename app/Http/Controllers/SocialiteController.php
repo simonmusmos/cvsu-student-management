@@ -30,7 +30,7 @@ class SocialiteController extends Controller
      
             $user = Socialite::driver($type)->user();
       
-            dd($user);
+            dd($user->user);
             $linkedinUser = User::where('oauth_id', $user->id)->first();
       
             if($linkedinUser){
