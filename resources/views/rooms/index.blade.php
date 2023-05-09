@@ -44,7 +44,8 @@
                         <tbody>
                             @forelse($rooms as $room)
                             <tr>
-                                <th scope="row">{{ $room->id }}</th>
+                                
+                                <th scope="row">{!! QrCode::generate($room->id); !!}</th>
                                 <td>{{ $room->name }}</td>
                                 <td>{{ $room->created_at->format('M d, Y') }}</td>
                                 <td>
