@@ -18,7 +18,7 @@
        
         function add(seat) {
             $.ajax({
-                url: "{{route('sections.seat.add', [$section->id])}}",
+                url: "{{route('rooms.seat.add', [$room->id])}}",
                 method: "post",
                 data: {
                     'seat': seat,
@@ -33,7 +33,7 @@
 
         function remove(seat) {
             $.ajax({
-                url: "{{route('sections.seat.remove', [$section->id])}}",
+                url: "{{route('rooms.seat.remove', [$room->id])}}",
                 method: "post",
                 data: {
                     'seat': seat,
@@ -54,9 +54,9 @@
             <div class="row">
                 <!-- Grid column -->
                 <div class="col-md-12">
-                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">{{ $section->name }} Seat Arrangement</h2>
+                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">{{ $room->name }} Seat Arrangement</h2>
                     <div class="float-left mb-4 ml-3">
-                    <a href="{{ (request()->t != 0 || request()->t != '') ? route('teachers.sections', [request()->t]) : route('sections.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
+                    <a href="{{ route('rooms.index') }}" class="btn btn-danger me-2 ml-4">Back</a>
                     </div>
                     
                 </div>
@@ -79,7 +79,7 @@
                 </div>
             @endif
 
-            <form id="update" method="POST" action="{{ route('sections.update', [$section->id]) }}">
+            <form id="update" method="POST" action="{{ route('rooms.update', [$room->id]) }}">
             @csrf
                 <div class="m-4 row">
                     <div class="col-5 mr-2 row mx-auto" style="padding: 0">
