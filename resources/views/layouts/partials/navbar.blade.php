@@ -6,7 +6,8 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{{ route('sections.index') }}" class="nav-link px-2 text-white">Sections</a></li>
+        <li><a href="{{ route('sections.index') }}" class="nav-link px-2 text-white">Sections</a></li>]
+        <li><a href="{{ route('rooms.index') }}" class="nav-link px-2 text-white">Rooms</a></li>
         <li><a href="{{ route('students.index') }}" class="nav-link px-2 text-white">Students</a></li>
         <li><a href="{{ route('teachers.index') }}" class="nav-link px-2 text-white">Teachers</a></li>
         <!-- <li><a href="#" class="nav-link px-2 text-white">Features</a></li>

@@ -38,6 +38,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::post('/destroy/{section}', 'SectionController@destroy')->name('sections.destroy');
         });
 
+        Route::group(['prefix' => 'rooms'], function() {
+            Route::get('/', 'RoomController@index')->name('rooms.index');
+            Route::get('/create', 'RoomController@create')->name('rooms.create');
+            Route::post('/', 'RoomController@add')->name('rooms.add');
+            Route::get('/{room}', 'RoomController@edit')->name('rooms.edit');
+            Route::post('/{room}', 'RoomController@update')->name('rooms.update');
+            Route::get('/{room}/seat', 'RoomController@seat')->name('rooms.seat');
+            Route::post('/{room}/seat/add', 'RoomController@seatAdd')->name('rooms.seat.add');
+            Route::post('/{room}/seat/remove', 'RoomController@seatRemove')->name('rooms.seat.remove');
+            Route::post('/destroy/{room}', 'RoomController@destroy')->name('rooms.destroy');
+        });
+
         Route::group(['prefix' => 'students'], function() {
             Route::get('/', 'StudentController@index')->name('students.index');
             Route::get('/create', 'StudentController@create')->name('students.create');
