@@ -13,6 +13,13 @@ class Room extends Model
         'name',
     ];
 
+    public function scopeWithSearch($query, $request)
+    {
+        if ($request->search ?? '') {
+            $query->whereRaw('name like "%' . $request->search . '%"');
+        }
+    }
+
     public function seats()
     {
         return $this->hasMany(RoomSeat::class);
