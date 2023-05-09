@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\RoomSeat;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class RoomController extends Controller
 {
@@ -84,5 +85,19 @@ class RoomController extends Controller
             $seat->delete();
         }
         return response()->json(['id' => $request->seat]);
+    }
+
+    public function download (Room $room) {
+        return response()->streamDownload(
+            function () use ($room) {
+                echo QrCode::size(200)
+                    ->format('png')
+                    ->generate($room->id);
+            },
+            'qr-code.png',
+            [
+                'Content-Type' => 'image/png',
+            ]
+        );
     }
 }

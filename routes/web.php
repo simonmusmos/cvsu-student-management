@@ -45,6 +45,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/{room}', 'RoomController@edit')->name('rooms.edit');
             Route::post('/{room}', 'RoomController@update')->name('rooms.update');
             Route::get('/{room}/seat', 'RoomController@seat')->name('rooms.seat');
+            Route::get('/{room}/download-qr', 'RoomController@download')->name('rooms.download-qr');
             Route::post('/{room}/seat/add', 'RoomController@seatAdd')->name('rooms.seat.add');
             Route::post('/{room}/seat/remove', 'RoomController@seatRemove')->name('rooms.seat.remove');
             Route::post('/destroy/{room}', 'RoomController@destroy')->name('rooms.destroy');

@@ -53,6 +53,7 @@
                                         @csrf
                                         <a href="{{ route('rooms.edit', [$room->id]) }}" class="btn btn-success me-2ml-0">Edit</a>
                                         <a href="{{ route('rooms.seat', [$room->id]) }}" class="btn btn-success me-2ml-0">View Seats</a>
+                                        <a href="{{ route('rooms.download-qr', [$room->id]) }}" class="btn btn-success me-2ml-0">Download QR Code</a>
                                         <input type="submit" value="Delete" class="btn btn-danger me-2">
                                     </form>
                                 </td>
